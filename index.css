@@ -3,9 +3,63 @@
     margin: 0;
     box-sizing: border-box;
 }
-.hero{
-    background-image: url(./Assets/Untitled\ design\ \(12\).svg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 70vh;
+
+nav a{
+    text-decoration: none;
+    color:black;
+
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: white ;
+}
+
+.nav-links {
+  display: flex;
+  gap: 50px;
+  justify-content: space-evenly;
+
+  
+
+}
+.menu-toggle{
+    padding-right: 10px;
+    color: black;
+    
+}   
+.hero {
+  min-height: 100vh;
+  background-image: url('./Assets/Untitled\ design\ \(1\).jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  padding: 40px;
+  color: white;
+  position: relative;
+}
+
+.hero-content {
+  max-width: 500px;
+  z-index: 2;
+  margin-left: 50px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(0,102,255,0.7), rgba(0,0,0,0.4));
+  clip-path: polygon(0 0, 70% 0, 50% 100%, 0% 100%);
+}
+
