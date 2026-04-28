@@ -4,14 +4,26 @@
   box-sizing: border-box;
 }
 
+:root{
+  --nav-height: 70px;
+}
+
 html{
   scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
 }
 
 body{
   font-family: 'Poppins', sans-serif;
   background-color: #fff;
   overflow-x: hidden;
+  line-height: 1.6;
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* ANIMATIONS */
@@ -103,7 +115,7 @@ body{
 /* FULL SCREEN SECTIONS */
 /* -------------------- */
 .home{
-  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 .service,
@@ -155,7 +167,7 @@ body{
   justify-content: space-between;
   align-items: center;
 
-  width: 100%;             
+  width: 100%;
   padding: 15px 40px;
   background-color: white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -166,7 +178,7 @@ body{
   top: 0;
   left: 0;
   right: 0;
-  height: 70px;
+  height: var(--nav-height);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -249,7 +261,7 @@ nav a:hover::after {
 .mobile-nav {
   display: none;
   position: fixed;
-  top: 70px;
+  top: var(--nav-height);
   left: 0;
   right: 0;
   background: white;
@@ -257,7 +269,7 @@ nav a:hover::after {
   gap: 0;
   padding: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-height: calc(100vh - 70px);
+  max-height: calc(100dvh - var(--nav-height));
   overflow-y: auto;
   z-index: 999;
   animation: slideInDown 0.4s ease-out;
@@ -292,6 +304,9 @@ nav a:hover::after {
   border-bottom: none;
 }
 
+.quotes-btn button a{
+  text-decoration: none;
+}
 .quotes-btn {
   flex-shrink: 0;
   display: flex;
@@ -327,20 +342,20 @@ nav a:hover::after {
 
 .hero{
   flex: 1;
-  min-height: calc(100vh - 70px);
+  min-height: calc(100dvh - var(--nav-height));
   display: flex;
   justify-content: flex-end;
   align-items: center; /* center vertically */
   background-image: url("./Assets/Untitled\ design\ \(1\).jpg");
   background-size: cover;
   background-position: center;
-  padding: 40px 60px;
-  margin-top: 70px;
+  padding: clamp(32px, 5vw, 60px);
+  margin-top: var(--nav-height);
   position: relative;
 }
 
 .hero-content{
-  max-width: 700px;
+  max-width: 640px;
   color: white;
   animation: fadeInUp 1s ease-out;
   text-align: right;
@@ -348,7 +363,7 @@ nav a:hover::after {
 }
 
 .hero-content h1{
-  font-size: 48px;
+  font-size: clamp(2.5rem, 6vw, 4.875rem);
   margin-bottom: 20px;
   animation: fadeInUp 1s ease-out 0.2s backwards;
   line-height: 1.2;
@@ -359,11 +374,16 @@ nav a:hover::after {
   animation: fadeInUp 1s ease-out 0.4s backwards;
   line-height: 1.6;
   word-wrap: break-word;
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
 }
 
 .contact-btn{
   margin-top: 20px;
   animation: fadeInUp 1s ease-out 0.6s backwards;
+}
+.contact-btn button a{
+  text-decoration: none;
+  color: white;
 }
 
 .contact-btn button{
@@ -395,20 +415,21 @@ nav a:hover::after {
 }
 
 .service-title{
-  min-width: 600px;
-  width: 100%;
+  min-width: 0;
+  width: min(100%, 760px);
   align-items: center;
+  margin: 0 auto;
   animation: fadeInUp 0.8s ease-out;
 }
 
 .service-title h1{
   margin:15px 0;
-  font-size: 40px;
+  font-size: clamp(2rem, 4vw, 2.5rem);
   animation: fadeInUp 0.8s ease-out 0.2s backwards;
 }
 
 .service-title .blue{
-  font-size: 30px;
+  font-size: clamp(1.25rem, 2.6vw, 1.875rem);
   color: #1e52ff;
   animation: fadeInUp 0.8s ease-out 0.1s backwards;
 }
@@ -438,7 +459,8 @@ nav a:hover::after {
   border-radius: 10px;
   color: white;
   font-size: 18px;
-  height: 280px;
+  min-height: 280px;
+  height: auto;
 
   display: flex;
   flex-direction: column;
@@ -464,7 +486,10 @@ nav a:hover::after {
   height: 50px;
   animation: bounce 2s infinite;
 }
-
+.service-cards button a{
+  text-decoration: none;
+  color: #1e52ff;
+}
 .service-cards button{
   font-size: 16px;
   background-color: white;
@@ -496,13 +521,21 @@ nav a:hover::after {
 /* -------------------- */
 .choose-us{
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 80px;
   align-items: center;
   justify-content:space-evenly;
   max-width: 1200px;
   margin: 100px auto;
   padding: 0 20px;
+}
+
+.choose-container,
+.about-container{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
 }
 
 .choose-title{
@@ -570,6 +603,8 @@ nav a:hover::after {
 .choose-us img{
   width: 100%;
   max-width: 700px;
+  height: auto;
+  object-fit: cover;
   animation: fadeInRight 0.8s ease-out;
   transition: transform 0.3s ease;
 }
@@ -583,7 +618,7 @@ nav a:hover::after {
 /* -------------------- */
 .about{
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 80px;
   align-items: center;
   justify-content:space-evenly;
@@ -595,6 +630,8 @@ nav a:hover::after {
 .about img{
   width: 100%;
   max-width: 700px;
+  height: auto;
+  object-fit: cover;
   animation: fadeInLeft 0.8s ease-out;
   border-radius: 10px;
   transition: transform 0.3s ease;
@@ -702,8 +739,8 @@ nav a:hover::after {
   align-items: center;
   justify-content: center;
   width: 100%;
-  margin: 20px;
-  padding: 20px;
+  margin: 20px auto;
+  padding: 20px 16px;
 }
 
 .achive-content{
@@ -733,14 +770,16 @@ nav a:hover::after {
 }
 
 .achive-container{
-  margin-top: 50px auto;
+  margin: 50px auto 0;
   display: grid;
   grid-template-columns: repeat(3,1fr);
+  width: min(100%, 1200px);
   max-width: 1200px;
   justify-content: center;
   align-items: center;
   background-color: #3363ff;
-  height: 300px;
+  min-height: 300px;
+  height: auto;
   border-radius: 10px;
   padding: 20px;
 }
@@ -898,6 +937,7 @@ nav a:hover::after {
   justify-content: space-around;
   padding: 80px 10%;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 /* LEFT SIDE */
@@ -954,7 +994,8 @@ nav a:hover::after {
 
 /* RIGHT SIDE */
 .right {
-  max-width: 400px;
+  max-width: 420px;
+  width: 100%;
   animation: fadeInRight 0.8s ease-out;
 }
 
@@ -1124,6 +1165,8 @@ nav a:hover::after {
   align-items: center;
   animation: fadeInUp 0.8s ease-out;
   gap: 20px;
+  width: min(100%, 1200px);
+  margin: 0 auto;
 }
 
 .cta-content div {
@@ -1162,16 +1205,16 @@ nav a:hover::after {
 }
 
 .footer-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 40px;
-  flex-wrap: wrap;
   max-width: 1400px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .col {
-  flex: 1;
-  min-width: 220px;
+  min-width: 0;
   animation: fadeInUp 0.8s ease-out;
 }
 
@@ -1305,7 +1348,7 @@ nav a:hover::after {
   }
 
   .hero {
-    margin-top: 100px;
+    margin-top: var(--nav-height);
     padding: 30px 20px;
   }
 
@@ -1318,8 +1361,8 @@ nav a:hover::after {
   }
 
   .service-title {
-    width: 90%;
-    padding: 0 20px;
+    width: min(100%, 720px);
+    padding: 0 16px;
   }
 
   .service-title h1 {
@@ -1372,6 +1415,7 @@ nav a:hover::after {
   }
 
   .footer-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 30px;
   }
 
@@ -1395,14 +1439,18 @@ nav a:hover::after {
 /* Tablets */
 @media (max-width: 768px) {
 
+  :root {
+    --nav-height: 60px;
+  }
+
   .nav-container {
     flex-direction: row;
     gap: 0;
     padding: 12px 20px;
     position: fixed;
     width: 100%;
-    height: auto;
-    min-height: 60px;
+    height: var(--nav-height);
+    min-height: var(--nav-height);
   }
 
   .logo h1 {
@@ -1437,7 +1485,7 @@ nav a:hover::after {
   .hero {
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 100px);
+    min-height: calc(100dvh - var(--nav-height));
     margin-top: 0;
     padding: 60px 20px;
     text-align: center;
@@ -1470,6 +1518,7 @@ nav a:hover::after {
   .service-title {
     width: 100%;
     min-width: unset;
+    padding: 0 10px;
   }
 
   .service-title h1 {
@@ -1490,7 +1539,8 @@ nav a:hover::after {
   }
 
   .service-cards {
-    height: 250px;
+    min-height: 250px;
+    height: auto;
     padding: 15px;
   }
 
@@ -1507,7 +1557,8 @@ nav a:hover::after {
   .choose-us,
   .about {
     gap: 30px;
-    margin: 40px 0;
+    margin: 40px auto;
+    padding: 0 16px;
   }
 
   .choose-title h1,
@@ -1635,11 +1686,12 @@ nav a:hover::after {
   }
 
   .footer-container {
+    grid-template-columns: 1fr;
     gap: 20px;
   }
 
   .col {
-    min-width: 100%;
+    min-width: 0;
   }
 
   .col h4 {
@@ -1659,11 +1711,17 @@ nav a:hover::after {
 /* Mobile phones */
 @media (max-width: 480px) {
 
+  :root {
+    --nav-height: 56px;
+  }
+
   .nav-container {
     flex-direction: row;
-    padding: 12px 15px;
+    padding: 10px 15px;
     gap: 0;
     justify-content: space-between;
+    height: var(--nav-height);
+    min-height: var(--nav-height);
   }
 
   .logo h1 {
@@ -1706,8 +1764,8 @@ nav a:hover::after {
   }
 
   .hero {
-    min-height: 70vh;
-    padding: 50px 15px;
+    min-height: calc(100dvh - var(--nav-height));
+    padding: 48px 15px 40px;
     margin-top: 0;
     justify-content: center;
     align-items: center;
@@ -1742,7 +1800,8 @@ nav a:hover::after {
   }
 
   .service-cards {
-    height: 220px;
+    min-height: 220px;
+    height: auto;
     padding: 15px;
   }
 
@@ -1938,12 +1997,12 @@ nav a:hover::after {
   }
 
   .footer-container {
+    grid-template-columns: 1fr;
     gap: 20px;
-    flex-direction: column;
   }
 
   .col {
-    min-width: 100%;
+    min-width: 0;
   }
 
   .col h4 {
